@@ -1,0 +1,79 @@
+
+git常用命令
+
+安装git后的基本配置：
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+
+mkdir learngit 创建测试目录
+cd learngit 切换到新创建的目录
+pwd 显示当前目录(如: /Users/michael/learngit)
+
+把learngit目录变成Git可管理的仓库(即初始化一个git仓库)：
+git init
+(显示如：Initialized empty Git repository in /Users/michael/learngit/.git/)
+(.gif目录默认是隐藏的，它将记录仓库中所有文件的修改历史，切勿修改其中的文件以免破坏仓库)
+
+把文件添加到版本库需要两步，第一步是：
+git add readme.txt
+(readme.txt是手工在learngit目录中新建的用于测试的文本文件)
+
+第二步是：
+git commit -m "wrote a readme file" (-m "***"是提交时的备注说明)
+显示如：
+[master (root-commit) cb926e7] wrote a readme file
+ 1 file changed, 2 insertions(+)
+ create mode 100644 readme.txt
+ (git commit命令执行成功后会提示，1个文件被改动(新添加的readme.txt文件),插入了两行内容(readme.txt有两行内容))
+
+可一次提交多个文件到版本库：
+git add file1.txt
+git add file2.txt
+git add file3.txt
+git commit -m "add 3 files."
+
+添加目录中的所有文件到版本库：
+git add .
+
+查看版本库当前状态：
+git status
+
+修改文件后查看修改了哪些地方：
+git diff readme.txt
+
+提交修改也分两步，第一步也是：
+git add readme.txt
+
+第二步是：
+git commit -m "提交说明"
+
+查看提交历史(按字母"q"键退出查看log状态)：
+git log
+
+以简洁方式查看提交历史(仅显示一行信息而隐藏提交用户和提交时间)：
+git log --pretty=oneline
+
+版本回退(HEAD代表当前版本)：
+git reset --hard HEAD^  回退到上一个版本
+git reset --hard HEAD^^  回退到上上个版本
+git reset --hard HEAD~100  回退到上100个版本
+git reset --hard commit_id(即commit id)
+
+*回退前用 git log 命令查看提交历史以确定要回退到哪个版本(版本号/即commit id)
+*要回到未来某个版本时，先用 git reflog 命令查看命令历史以确定要回到未来哪个版本
+
+在git add后取消add操作(即从暂存区中删除已add到其中的修改)：
+git reset HEAD readme.txt
+
+在工作区修改完文件后取消此修改：
+git checkout -- readme.txt
+(场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步走，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，用版本回退命令，不过前提是没有推送到远程库)
+
+查看工作区和版本库最新版本的区别：
+git diff HEAD -- readme.txt
+
+查看文件的全部内容：
+cat readme.txt
+
