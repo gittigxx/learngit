@@ -71,9 +71,19 @@ git checkout -- readme.txt
 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步走，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，用版本回退命令，不过前提是没有推送到远程库)
 
-查看工作区和版本库最新版本的区别：
+查看工作区和版本库的区别：
 git diff HEAD -- readme.txt
 
-查看文件的全部内容：
+查看文件的内容：
 cat readme.txt
+
+从工作区删除文件：
+rm readme.txt
+
+如果从工作区误删了某个文件(手工在文件管理器中删除或使用 rm file 命令删除)，想恢复该文件：
+git checkout -- file
+
+如果真想删除某个文件：
+git rm file
+git commit -m "remove file"
 
