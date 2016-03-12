@@ -87,3 +87,24 @@ git checkout -- file
 git rm file
 git commit -m "remove file"
 
+
+--------以下为 github 操作(在继续阅读之前请注册GitHub账号/网址是github.com)---------
+
+一. 创建并添加SSH Key。因为本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要做如下设置——
+
+第1步 在本地创建SSH Key：
+在本地用户主目录下(如C:\Documents and Settings\Administrator)，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了可直接 跳到下一步。如果没有，打开Git Bash，创建SSH Key：
+
+$ ssh-keygen -t rsa -C "lsokweb@gmail.com"
+
+(邮件地址换成自己的，然后一路回车，使用默认值即可，无需设置密码。如果顺利可以在用户主目录下找到.ssh目录，其中有id_rsa和id_rsa.pub两个文件，这两个文件就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，后面会把它添加到github中。
+
+
+第2步 将公钥复制到github：
+登陆GitHub帐户，“Settings”—“SSH Keys”，点击“New SSH Key”，填上任意Title(如“家里”)，在文本框中粘贴本地id_rsa.pub文件的内容。
+
+(GitHub允许你添加多个Key，假定你有多台电脑，有时在公司电脑上提交，有时在家里电脑上提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub提交了。公钥和私钥的工作原理是，公钥和私钥是一个“密钥对”，提交时，你电脑里的私钥会和github上的公钥配对，如果匹配成功则允许提交，否则就无法提交，目的就是保证只有合法用户才能提交)
+
+
+二. 添加远程库
+
