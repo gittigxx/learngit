@@ -14,6 +14,11 @@ git init
 (显示如：Initialized empty Git repository in /Users/michael/learngit/.git/)
 (.gif目录默认是隐藏的，它将记录仓库中所有文件的修改历史，切勿修改其中的文件以免破坏仓库)
 
+切换到项目目录并初始化该项目的git版本库：
+cd d:/xampp/htdocs/project
+git init
+(在实际工作中，你的项目文件夹可能存在于电脑上的任意位置，如 D:/xampp/htdocs/project，我们需要先切换到项目文件夹才能初始化它的版本库)
+
 把文件添加到版本库需要两步，第一步是：
 git add readme.txt
 (readme.txt是手工在learngit目录中新建的用于测试的文本文件)
