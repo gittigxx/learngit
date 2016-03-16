@@ -6,13 +6,13 @@ git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 
 mkdir learngit 创建测试目录
-cd learngit 切换到新创建的目录
-pwd 显示当前目录(如: /Users/michael/learngit)
+cd learngit 切换到新创建的learngit目录
+pwd 显示当前目录(如: /c/Documents and Settings/Administrator/learngit)
 
 把learngit目录变成Git可管理的仓库(即初始化一个git仓库)：
 git init
 (显示如：Initialized empty Git repository in /Users/michael/learngit/.git/)
-(.gif目录默认是隐藏的，它将记录仓库中所有文件的修改历史，切勿修改其中的文件以免破坏仓库)
+(git init命令会在项目文件夹中生成一个名为".git"的隐藏目录，它就是git版本库，它将记录仓库中所有文件的修改历史。切勿修改其中的文件以免破坏仓库)
 
 切换到项目目录并初始化该项目的git版本库：
 cd d:/xampp/htdocs/project
@@ -21,7 +21,7 @@ git init
 
 把文件添加到版本库需要两步，第一步是：
 git add readme.txt
-(readme.txt是手工在learngit目录中新建的用于测试的文本文件)
+(readme.txt是手工在learngit目录中新建的一个用于测试的文件，可随意输入几行内容)
 
 第二步是：
 git commit -m "wrote a readme file" (-m "***"是提交时的备注说明)
@@ -111,5 +111,20 @@ $ ssh-keygen -t rsa -C "lsokweb@gmail.com"
 (GitHub允许你添加多个Key，假定你有多台电脑，有时在公司电脑上提交，有时在家里电脑上提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub提交了。公钥和私钥的工作原理是，公钥和私钥是一个“密钥对”，提交时，你电脑里的私钥会和github上的公钥配对，如果匹配成功则允许提交，否则就无法提交，目的就是保证只有合法用户才能提交)
 
 
-二. 添加远程库
+二. 添加远程库并把本地仓库推送到远程库
+远程库有两个作用，一是可以备份本地仓库(也就是备份整个项目)，另一个是与其它人协作共同开发。将本地仓库(如learngit)添加到github远程仓库需要两步，第一步是在github上创建一个新仓库(命名为learngit)并把本地的learngit仓库与之关联，第二步是将本地仓库的数据推送到远程仓库：
+
+第1步：在github创建新仓库并将本地仓库与之关联：
+登录github帐户，"Create New repository"，"Repository name"填写"learngit"，"Description"可填写"git学习"，其它选项保持默认，点击"Create repository"按钮。
+
+打开git bash并切换到learngit目录，将本地learngit仓库与刚创建的github仓库相关联：
+git remote add origin https://github.com/你的github帐号/learngit.git
+
+
+第2步：将本地learngit仓库推送到远程仓库：
+git push -u origin master
+(注意：因为远程库是空的，第一次推送时必须加 -u 参数。推送完成后可看到github远程库中的内容已和本地仓库一致)
+
+以后每次需要推送时，使用命令：
+git push origin master
 
