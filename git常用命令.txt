@@ -128,3 +128,18 @@ git push -u origin master
 以后每次需要推送时，使用命令：
 git push origin master
 
+
+三. 从远程库克隆
+如果新开始一个项目，建议先创建远程库，然后每个项目成员都从远程库克隆一份到自己的电脑。
+
+第1步：在github创建一个新仓库(这里命名为"gitskills")
+
+第2步：执行克隆命令:
+git clone https://github.com/你的github帐号/gitskills.git
+(克隆的仓库会克隆到哪里呢？如果在执行git clone命令时不指定其它参数，克隆的仓库会克隆到用户主目录中，如 C:/Documents and Settings/Administrator)
+
+*如需指定克隆目录(即克隆到哪个目录)，命令格式为：
+git clone 远程库网址 本地目录
+实际命令类似如下：
+git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/gitskills
+(注意，此时d:/xampp/htdocs里并没有gitskills这个目录，执行克隆命令后会自动创建它)
