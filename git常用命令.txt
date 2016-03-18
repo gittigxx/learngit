@@ -92,6 +92,35 @@ git checkout -- file
 git rm file
 git commit -m "remove file"
 
+——————————————————————————————————————————————
+git分支管理
+创建分支的作用是从主开发流程中分离出来，例如你可以创建一个自己的分支，在自己的分支上开发，当开发完成后再将自己的分支合并到主分支上，这样就可以在工作时不影响其它团队成员(更多有关分支的内容可搜索"git分支管理策略")。
+
+创建并切换到一个新分支：
+git checkout -b dev
+(dev 是新分支的名称)
+
+查看版本库中分支的情况(有多少个分支/当前分支前有一个星号)：
+git branch
+
+在不同分支之间切换：
+git checkout master
+git checkout dev
+
+把dev分支合并到master分支上：
+git checkout master  先切换到master分支
+git merge dev   合并dev分支到master分支上
+
+删除分支：
+git branch -d dev
+
+
+
+
+
+
+
+
 
 --------以下为 github 操作(在继续阅读之前请注册GitHub账号/网址是github.com)---------
 
@@ -144,8 +173,6 @@ git clone 远程库网址 本地目录
 git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/gitskills
 (注意，此时d:/xampp/htdocs里并没有gitskills这个目录，执行克隆命令后会自动创建它)
 
-
-四. 分支管理
 
 
 
