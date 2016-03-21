@@ -95,7 +95,7 @@ git commit -m "remove file"
 
 
 ——————————————————————————————————————————————
-git分支管理
+git分支管理：
 创建分支的作用是从主开发流程中分离出来，例如你可以创建一个自己的分支，在自己的分支上开发，当开发完成后再将自己的分支合并到主分支上，这样就可以在工作时不影响其它团队成员(更多有关分支的内容可搜索"git分支管理策略")。
 
 创建并切换到一个新分支：
@@ -113,11 +113,16 @@ git checkout dev
 git checkout master  先切换到master分支
 git merge dev   合并dev分支到master分支上
 
+默认情况下git使用fast forward模式合并分支，如想使用非fast forward模式合并分支：
+git merge --no-ff -m "提交说明" dev
+(使用--no-ff模式合并分支可保留分支历史/提交说明必须填写/使用默认的fast forward模式合并分支会丢掉分支历史)
+(可用 git log --graph 命令查看两种合并模式的区别)
+
 删除分支：
 git branch -d dev
 
 
-解决冲突
+解决冲突：
 合并分支时，如git提示"conflict"，就表示发生了冲突，即不同分支中的文件内容在某些相同的行中内容不一致，这时就必须先解决冲突。解决冲突后再提交(add和commit)，合并完成。
 
 1. 冲突的标记：
@@ -197,4 +202,3 @@ git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/git
 附：几个常用命令的详细解释——
 http://www.ruanyifeng.com/blog/2014/06/git_remote.html
 (git clone、git remote、git fetch、git pull、git push)
-test merge with --no-ff ssssss bbc
