@@ -197,4 +197,4 @@ git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/git
 附：几个常用命令的详细解释——
 http://www.ruanyifeng.com/blog/2014/06/git_remote.html
 (git clone、git remote、git fetch、git pull、git push)
-test merge with --no-ff
+test merge with --no-ff ssssss
