@@ -121,6 +121,10 @@ git merge --no-ff -m "提交说明" dev
 删除分支：
 git branch -d dev
 
+强行删除分支：
+git branch -D dev
+(当想删除某个未被合并的分支时git会提醒你该分支还未被合并，如仍要删除，使用此强行删除命令)
+
 
 合并分支时解决冲突：
 合并分支时，如git提示"conflict"，就表示发生了冲突，即不同分支中的文件内容在某些相同的行中内容不一致，这时就必须先解决冲突。解决冲突后再提交(add和commit)，合并完成。
@@ -147,12 +151,6 @@ git stash apply stash@{1}
 
 删除所有存储的工作进度：
 git stash clear
-
-
-
-
-
-
 
 
 
@@ -202,15 +200,29 @@ git clone https://github.com/你的github帐号/gitskills.git
 (克隆的仓库会克隆到哪里呢？如果在执行git clone命令时不指定其它参数，克隆的仓库会克隆到用户主目录中，如 C:/Documents and Settings/Administrator)
 
 *如需指定克隆目录(即克隆到哪个目录)，命令格式为：
-git clone 远程库网址 本地目录
-实际命令类似如下：
+git clone 远程库地址 本地目录
+实际命令类似下面：
 git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/gitskills
 (注意，此时d:/xampp/htdocs里并没有gitskills这个目录，执行克隆命令后会自动创建它)
 
 
+四. 将本地分支推送到远程库(的相应分支)
+哪些分支应推送到远程？哪些分支不需要推送呢？原则如下——
+1. master分支是主分支，因此要时刻与远程同步；
+2. dev分支是开发分支，所有团队成员都需要在上面工作，也需要与远程同步；
+3. bug分支只用于在本地修复bug，不必推送到远程；
+4. feature分支是否推送到远程取决于你是否需要和其它成员合作开发此功能。
+总之，本地分支是否推送到远程完全视情况而定。
 
+查看远程库信息：
+git remote -v
 
+将本地分支推送到远程库，如：
+git push origin master
+git push origin dev
+(注意：git push origin 后面要加上本地分支的名称)
 
+抓取远程库分支：
 
 
 
