@@ -154,6 +154,18 @@ git stash clear
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 --------以下为 github 操作(在继续阅读之前请注册GitHub账号/网址是github.com)---------
 
 一. 创建并添加SSH Key。因为本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要做如下设置——
@@ -205,6 +217,8 @@ git clone 远程库地址 本地目录
 git clone https://github.com/你的gthub帐号/gitskills.git d:/xampp/htdocs/gitskills
 (注意，此时d:/xampp/htdocs里并没有gitskills这个目录，执行克隆命令后会自动创建它)
 
+*当从远程库克隆时，克隆到本地的仓库只有master分支，可使用 git checkout -b dev origin/dev 将远程分支克隆到本地。
+
 
 四. 将本地分支推送到远程库(的相应分支)
 哪些分支应推送到远程？哪些分支不需要推送呢？原则如下——
@@ -222,7 +236,17 @@ git push origin master
 git push origin dev
 (注意：git push origin 后面要加上本地分支的名称)
 
-抓取远程库分支：
+
+五. 抓取远程分支(pull)：
+多人协作的工作场景通常是这样(以在dev分支上开发为例)——
+1. 首先，用 git push origin dev 推送自己的修改；
+2. 如果推送失败，是因为远程分支比你的本地分支内容更新(即有人在你之前向这个分支推送了他的修改)，所以你需要先用 git pull 将远程分支合并到自己的本地分支上；
+3. 如合并后有冲突，则先解决冲突并在本地提交(add和commit)；
+4. 如没有冲突或已解决了冲突，再用 git push origin dev 推送到远程分支。
+
+*如果 git pull 时提示"no tracking information"，则说明本地分支和远程分支没有创建链接关系，这时可用命令 git branch --set-upstream-to origin/dev 创建链接关系，然后再 git pull。
+
+
 
 
 
