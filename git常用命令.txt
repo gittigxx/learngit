@@ -201,7 +201,6 @@ git push origin --tags
 
 
 
-
 --------以下为 github 操作(在继续阅读之前请注册GitHub账号/网址是github.com)---------
 
 一. 创建并添加SSH Key。因为本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以需要做如下设置——
@@ -236,7 +235,7 @@ git push -u origin master
 
 以后每次需要推送时，使用命令：
 git push origin master
-
+(注意：master是要推送的分支名称)
 
 三. 从远程库克隆
 如果新开始一个项目，建议先创建远程库，然后每个项目成员都从远程库克隆一份到自己的电脑。
