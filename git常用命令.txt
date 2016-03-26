@@ -57,6 +57,11 @@ git log
 
 以简洁方式查看提交历史(仅显示一行信息而隐藏提交用户和提交时间)：
 git log --pretty=oneline
+(显示如：ea2dd571ef424ddf4aed83be08f1af019c694c78 删除结尾空行)
+
+以简洁方式查看提交历史(仅显示一行信息，且commit id仅显示7位):
+git log --pretty=oneline --abbrev-commit
+(显示如：ea2dd57 删除结尾空行)
 
 版本回退(HEAD代表当前版本)：
 git reset --hard HEAD^  回退到上一个版本
@@ -94,7 +99,6 @@ git commit -m "remove file"
 
 
 
-——————————————————————————————————————————————
 git分支管理：
 创建分支的作用是从主开发流程中分离出来，例如你可以创建一个自己的分支，在自己的分支上开发，当开发完成后再将自己的分支合并到主分支上，这样就可以在工作时不影响其它团队成员(更多有关分支的内容可搜索"git分支管理策略")。
 
@@ -154,14 +158,46 @@ git stash clear
 
 
 
+git标签管理：
+可以为版本库中的某个版本定义一个标签，标签其实就是指向一个commit的指针，当我们想发布程序的一个稳定版本时通常会定义一个标签，如"v1.0"(即1.0版)。
 
+首先切换到想打标签的分支上，创建标签：
+git checkout dev
+git tag v1.0
+("v1.0"只是标签名称的示例，就像本教程中的其它示例一样(比如在分支管理命令中的"dev"也是一个分支名称的示例))
 
+默认情况下标签是打在最新的commit上，如果想为某个以前的提交打标签：
+第1步先使用git log命令显示提交历史：
+git log --pretty=oneline --abbrev-commit
 
+第2步再为某个commit id打标签：
+git tag v1.0 9ecfa7d
 
+查看标签库中的所有标签：
+git tag
 
+查看某个标签的详细信息：
+git show v1.0
 
+创建带说明的标签(用-a指定标签名，-m指定说明文字)：
+git tag -a v0.1 -m "version 0.1 released" 3628164
 
+还可以通过-s用私钥签名一个标签(用PGP签名的标签是不可伪造的)：
+$ git tag -s v0.2 -m "signed version 0.2 released" fec145a
+(因为是采用PGP签名，所以必须先安装gpg(GnuPG)，如果没有找到gpg，或者没有gpg密钥对，就会报错)
 
+删除标签：
+git tag -d v1.0
+
+推送某个标签到远程库：
+git push origin v1.0
+
+推送全部标签到远程库：
+git push origin --tags
+
+如果标签已推送到远程，想删除它就需要两步：
+第1步先在本地删除：git tag -d v1.0
+第2步再用命令：git push origin :refs/tags/v1.0
 
 
 
