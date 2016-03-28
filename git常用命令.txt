@@ -1,6 +1,9 @@
 
 git常用命令
 
+
+一. 基本配置与常用版本库操作命令
+
 安装git后的基本配置：
 git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
@@ -19,7 +22,8 @@ cd d:/xampp/htdocs/project
 git init
 (在实际工作中，你的项目文件夹可能存在于电脑上的任意位置，如 D:/xampp/htdocs/project，我们需要先切换到项目文件夹才能初始化它的版本库)
 
-把文件添加到版本库需要两步，第一步是：
+把文件添加到版本库需要两步：
+第一步是：
 git add readme.txt
 (readme.txt是手工在learngit目录中新建的一个用于测试的文件，可随意输入几行内容)
 
@@ -99,7 +103,7 @@ git commit -m "remove file"
 
 
 
-git分支管理：
+二. git分支管理：
 创建分支的作用是从主开发流程中分离出来，例如你可以创建一个自己的分支，在自己的分支上开发，当开发完成后再将自己的分支合并到主分支上，这样就可以在工作时不影响其它团队成员(更多有关分支的内容可搜索"git分支管理策略")。
 
 创建并切换到一个新分支：
@@ -158,7 +162,7 @@ git stash clear
 
 
 
-git标签管理：
+三. git标签管理：
 可以为版本库中的某个版本定义一个标签，标签其实就是指向一个commit的指针，当我们想发布程序的一个稳定版本时通常会定义一个标签，如"v1.0"(即1.0版)。
 
 首先切换到想打标签的分支上，创建标签：
@@ -182,10 +186,6 @@ git show v1.0
 创建带说明的标签(用-a指定标签名，-m指定说明文字)：
 git tag -a v0.1 -m "version 0.1 released" 3628164
 
-还可以通过-s用私钥签名一个标签(用PGP签名的标签是不可伪造的)：
-$ git tag -s v0.2 -m "signed version 0.2 released" fec145a
-(因为是采用PGP签名，所以必须先安装gpg(GnuPG)，如果没有找到gpg，或者没有gpg密钥对，就会报错)
-
 删除标签：
 git tag -d v1.0
 
@@ -198,6 +198,23 @@ git push origin --tags
 如果标签已推送到远程，想删除它就需要两步：
 第1步先在本地删除：git tag -d v1.0
 第2步再用命令：git push origin :refs/tags/v1.0
+
+
+
+四. 自定义git：
+git有许多可配置项(如开始时我们学的邮箱和用户名配置)，通过自定义配置可让我们的工作更高效。
+
+1. 颜色配置(让命令看上去更醒目)：
+git config --global color.ui true
+
+2. 忽略版本库中的特定文件(或文件夹)：
+有时需要忽略版本库中的某类文件，如保存了数据库密码的配置文件，系统自动生成的垃圾文件等。可以通过在版本库中添加一个叫".gitignore"的文件来实现，添加之后，需要把它也提交到版本库中。git为我们准备了一些现成的gitignore文件，地址是：https://github.com/github/gitignore
+
+3. 配置git命令的别名：
+通过为常用命令配置别名可简化操作，如为"以简化形式显示提交历史"的命令定义一个别名：
+git config --global alias.lg 'log --pretty=oneline --abbrev-commit'
+(这样以后只需输入 git lg 就能以简化形式显示提交历史了)
+
 
 
 
@@ -236,6 +253,7 @@ git push -u origin master
 以后每次需要推送时，使用命令：
 git push origin master
 (注意：master是要推送的分支名称)
+
 
 三. 从远程库克隆
 如果新开始一个项目，建议先创建远程库，然后每个项目成员都从远程库克隆一份到自己的电脑。
@@ -282,15 +300,5 @@ git push origin dev
 *如果 git pull 时提示"no tracking information"，则说明本地分支和远程分支没有创建链接关系，这时可用命令 git branch --set-upstream-to origin/dev 创建链接关系，然后再 git pull。
 
 
-
-
-
-
-
-
-
-
-
-附：几个常用命令的详细解释——
-http://www.ruanyifeng.com/blog/2014/06/git_remote.html
-(git clone、git remote、git fetch、git pull、git push)
+六. 在github上"Fork"开源项目
+可以在github上"Fork"其它开源项目，"Fork"的作用就是在自己的帐号下克隆一个开源项目的仓库。然后，你再把它克隆到自己的电脑，这样就能参与开源项目的开发。如果想把自己的修改推送到开源项目的官方帐号，可以发起一个"pull request"请求(需要官方接受)。
