@@ -212,6 +212,7 @@ git config --global color.ui true
 有时需要忽略版本库中的某类文件，如保存了数据库密码的配置文件，系统自动生成的垃圾文件等。可以通过在版本库中添加一个叫".gitignore"的文件来实现，添加之后，需要把它也提交到版本库中。git为我们准备了一些现成的gitignore文件，地址是：https://github.com/github/gitignore
 
 .gitignore文件内容示例(#号后面是注释)：
+/upload/* # 忽略根目录下的 upload 目录的全部内容
 *.a       # 忽略所有 .a 结尾的文件
 !lib.a    # 但 lib.a 除外
 /TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
