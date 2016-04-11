@@ -207,8 +207,22 @@ git有许多可配置项(如开始时我们学的邮箱和用户名配置)，通
 1. 颜色配置(让命令看上去更醒目)：
 git config --global color.ui true
 
+
 2. 忽略版本库中的特定文件(或文件夹)：
 有时需要忽略版本库中的某类文件，如保存了数据库密码的配置文件，系统自动生成的垃圾文件等。可以通过在版本库中添加一个叫".gitignore"的文件来实现，添加之后，需要把它也提交到版本库中。git为我们准备了一些现成的gitignore文件，地址是：https://github.com/github/gitignore
+
+.gitignore文件内容示例(#号后面是注释)：
+*.a       # 忽略所有 .a 结尾的文件
+!lib.a    # 但 lib.a 除外
+/TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+build/    # 忽略 build/ 目录下的所有文件
+doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+
+如gitignore无法生效，原因是它只能忽略原来没有被跟踪的文件，所以如果某些文件已经纳入了版本管理中，则修改.gitignore是无效的。解决方法是先把本地缓存删除(改为未track状态)，然后再提交：
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
 
 3. 配置git命令的别名：
 通过为常用命令配置别名可简化操作，如为"以简化形式显示提交历史"的命令定义一个别名：
