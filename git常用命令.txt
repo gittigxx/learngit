@@ -321,5 +321,10 @@ git push origin dev
 *如果 git pull 时提示"no tracking information"，则说明本地分支和远程分支没有创建链接关系，这时可用命令 git branch --set-upstream-to origin/dev 创建链接关系，然后再 git pull。
 
 
-六. 在github上"Fork"开源项目
+六. 删除远程分支，如：
+git push origin :feature-post
+(注意：origin后面有一个空格。即用一个空的分支代替要删除的远程分支)
+
+
+七. 在github上"Fork"开源项目
 可以在github上"Fork"其它开源项目，"Fork"的作用就是在自己的帐号下克隆一个开源项目的仓库。然后，你再把它克隆到自己的电脑，这样就能参与开源项目的开发。如果想把自己的修改推送到开源项目的官方帐号，可以发起一个"pull request"请求(需要官方接受)。
